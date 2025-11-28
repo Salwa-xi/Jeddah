@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Saudi Arabic Journey – Jeddah</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-main: #fdf7ef;
+      --bg-soft: #ffffff;
+      --bg-soft-alt: #f3ebe0;
+      --primary: #0f766e;
+      --primary-soft: rgba(15,118,110,0.06);
+      --accent: #f97316;
+      --accent-soft: #ffe2c5;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+      --border-soft: #e5ded3;
+      --brown: #4b2b20;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #fbe6c7, var(--bg-main));
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* FLOATING BALLOONS */
+    .floating-balloons {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 22px;
+      height: 32px;
+      border-radius: 50% 50% 45% 45%;
+      background: rgba(14,165,233,0.2);
+      box-shadow: 0 8px 15px rgba(15,23,42,0.15);
+      animation: float-up 16s linear infinite;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      width: 2px;
+      height: 18px;
+      background: rgba(148, 92, 40, 0.5);
+      transform: translateX(-50%);
+    }
+
+    .balloon.b1 { left: 10%; animation-delay: 0s; }
+    .balloon.b2 { left: 30%; animation-delay: 3s; background: rgba(249,115,22,0.25); }
+    .balloon.b3 { left: 55%; animation-delay: 6s; background: rgba(14,148,136,0.25); }
+    .balloon.b4 { left: 75%; animation-delay: 9s; background: rgba(234,179,8,0.25); }
+    .balloon.b5 { left: 90%; animation-delay: 12s; background: rgba(14,165,233,0.18); }
+
+    @keyframes float-up {
+      0% {
+        transform: translateY(110vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      50% {
+        transform: translateY(40vh) translateX(-10px);
+      }
+      100% {
+        transform: translateY(-20vh) translateX(10px);
+        opacity: 0;
+      }
+    }
+
+    /* INTRO SCREEN */
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(14,165,233,0.4), transparent 60%),
+        radial-gradient(circle at 80% 85%, rgba(248,153,52,0.4), transparent 60%),
+        #f9f3e7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    .intro-logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 32px;
+      background: conic-gradient(from 200deg, #0ea5e9, #f97316, #0f766e, #0ea5e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fefce8;
+      box-shadow: 0 18px 50px rgba(148, 92, 40, 0.5);
+      animation: intro-bounce 1.7s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-logo::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: inherit;
+      background: radial-gradient(circle at top, #fdf7ef, #fde7c7);
+    }
+
+    .intro-logo span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-title {
+      margin-top: 1.1rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      color: #3b2f26;
+    }
+
+    .intro-subtitle {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: #7c6a57;
+      text-align: center;
+      max-width: 260px;
+    }
+
+    .intro-progress {
+      margin-top: 1.3rem;
+      width: 180px;
+      height: 4px;
+      border-radius: 999px;
+      background: #f4ddbf;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .intro-progress-bar {
+      position: absolute;
+      inset: 0;
+      width: 0;
+      background: linear-gradient(90deg, #0ea5e9, #0f766e, #f97316);
+      animation: intro-progress 5s linear forwards;
+    }
+
+    .intro-skip {
+      margin-top: 1.1rem;
+      font-size: 0.75rem;
+      color: #7c6a57;
+      cursor: pointer;
+      opacity: 0.86;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .intro-skip:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .intro-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.02);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .page-content {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(253, 247, 239, 0.96);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--brown);
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #0ea5e9, #0f766e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #fdf7ef;
+      box-shadow: 0 8px 18px rgba(15, 118, 110, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.12rem;
+      transition: color 0.16s ease, transform 0.16s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #0ea5e9, #f97316);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--brown);
+      transform: translateY(-1px);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* NAV TOGGLE (موبايل) */
+    .nav-toggle {
+      display: none;
+      background: #ffffff;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 0.75rem;
+      box-shadow: 0 6px 14px rgba(148,92,40,0.22);
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--brown);
+      position: relative;
+      transition: background 0.2s ease;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: var(--brown);
+      transition: transform 0.2s ease, top 0.2s ease, bottom 0.2s ease;
+    }
+
+    .nav-toggle span::before { top: -6px; }
+    .nav-toggle span::after { bottom: -6px; }
+
+    .nav-toggle.open span {
+      background: transparent;
+    }
+
+    .nav-toggle.open span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.open span::after {
+      bottom: 0;
+      transform: rotate(-45deg);
+    }
+
+    .nav-links-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem 1rem;
+      font-size: 0.9rem;
+      background: rgba(253,247,239,0.98);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav-links-mobile a {
+      color: var(--text-muted);
+    }
+
+    .nav-links-mobile a:hover {
+      color: var(--brown);
+    }
+
+    .nav-links-mobile.open {
+      display: flex;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 1.5rem 0 4rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(14,165,233,0.35), transparent 70%);
+      top: -130px;
+      right: -160px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(248,153,52,0.25), transparent 70%);
+      bottom: -130px;
+      left: -80px;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 2.6rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--brown);
+      margin-bottom: 1.1rem;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #0f766e;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 2.9rem);
+      line-height: 1.18;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      color: var(--brown);
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #0ea5e9, #0f766e, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+      animation: title-wave 6s ease-in-out infinite;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 440px;
+      min-height: 3.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary, .btn-ghost {
+      border-radius: 999px;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #0ea5e9, #0f766e);
+      color: #fdf7ef;
+      font-weight: 600;
+      box-shadow: 0 14px 30px rgba(15, 118, 110, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(15, 118, 110, 0.5);
+    }
+
+    .btn-ghost {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      color: var(--brown);
+    }
+
+    .btn-ghost:hover {
+      background: #fdf1de;
+      transform: translateY(-1px);
+    }
+
+    .btn-ripple::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.7), transparent 55%);
+      opacity: 0;
+      transform: scale(0.35);
+      pointer-events: none;
+    }
+
+    .btn-ripple.active::after {
+      animation: ripple 0.5s ease-out;
+    }
+
+    .hero-meta {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      position: relative;
+      perspective: 900px;
+      isolation: isolate;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 22px;
+      padding: 1rem;
+      background: radial-gradient(circle at top left, #ffffff, #f6ebde);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      transform-style: preserve-3d;
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+      overflow: hidden;
+    }
+
+    .hero-main-media {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .hero-main-media img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transform: scale(1.03);
+      animation: slow-zoom 18s ease-in-out infinite alternate;
+    }
+
+    .hero-tag {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(253,247,239,0.94);
+      border: 1px solid var(--border-soft);
+      font-size: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--brown);
+    }
+
+    .hero-tag span.bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #0f766e;
+      box-shadow: 0 0 0 0 rgba(15,118,110,0.4);
+      animation: pulse 2s infinite;
+    }
+
+    .hero-chip {
+      position: absolute;
+      top: -12px;
+      right: -6px;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #f97316, #facc15);
+      color: #4b2b20;
+      font-size: 0.7rem;
+      font-weight: 600;
+      transform: rotate(8deg);
+      box-shadow: 0 15px 35px rgba(148,92,40,0.6);
+    }
+
+    .hero-floating-card {
+      position: absolute;
+      right: -4px;
+      bottom: 70px;
+      padding: 0.8rem 0.9rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border-soft);
+      width: 215px;
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      box-shadow: 0 14px 32px rgba(148,92,40,0.35);
+      animation: float 4.1s ease-in-out infinite;
+    }
+
+    .hero-floating-card strong {
+      font-size: 0.82rem;
+      color: var(--brown);
+    }
+
+    .hero-floating-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .pill-mini {
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid #edd6bf;
+      background: #fff7ec;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+    }
+
+    /* GENERIC SECTION */
+    section {
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.9);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
+      color: var(--brown);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 2rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ABOUT JEDDAH */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .about-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.1rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+      border-color: #f2cda0;
+    }
+
+    .about-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .about-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--brown);
+    }
+
+    .about-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* CHARACTERS */
+    .characters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .character-card {
+      background: var(--bg-soft);
+      border-radius: 22px;
+      border: 1px solid var(--border-soft);
+      padding: 1.1rem;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .character-image-wrapper {
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 3px solid var(--accent-soft);
+      background: #fff7ec;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .character-image-wrapper img {
+      width: 90%;
+      height: 100%;
+      object-fit: cover;
+      transform-origin: center;
+      transition: transform 0.3s ease;
+    }
+
+    .character-card.talking .character-image-wrapper {
+      animation: talking-bounce 0.7s ease-in-out infinite;
+    }
+
+    .character-card h3 {
+      font-size: 0.98rem;
+      margin-top: 0.2rem;
+      color: var(--brown);
+    }
+
+    .character-role {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .character-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      min-height: 2.6em;
+    }
+
+    .character-ai-tag {
+      font-size: 0.7rem;
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #7c3a0a;
+      margin-bottom: 0.4rem;
+    }
+
+    .character-btn {
+      margin-top: 0.3rem;
+      background: linear-gradient(120deg, #0ea5e9, #0f766e);
+      color: #fdf7ef;
+      border-radius: 999px;
+      border: none;
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      box-shadow: 0 10px 20px rgba(15,118,110,0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .character-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(15,118,110,0.4);
+    }
+
+    /* LESSON – LETTERS */
+    .lesson-shell {
+      background: radial-gradient(circle at top left, #ffffff, #f6eadd);
+      border-radius: 22px;
+      border: 1px solid var(--border-soft);
+      padding: 2rem 1.7rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .lesson-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 1.4rem;
+    }
+
+    .lesson-header h3 {
+      font-size: 1.1rem;
+      color: var(--brown);
+    }
+
+    .lesson-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .position-tabs {
+      display: inline-flex;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.15rem;
+      background: #fdf1de;
+      border: 1px solid #f2cda0;
+      font-size: 0.78rem;
+    }
+
+    .position-tab {
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      border: none;
+      background: transparent;
+      color: #a5621c;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .position-tab.active {
+      background: #ffffff;
+      color: #7c3a0a;
+    }
+
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .letter-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .letter-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(148,92,40,0.18);
+      border-color: #f2cda0;
+    }
+
+    .letter-ar {
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      color: var(--brown);
+    }
+
+    .letter-en {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .letter-example {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--brown);
+    }
+
+    .letter-example span {
+      font-weight: 600;
+      color: #0f766e;
+    }
+
+    .letter-position-note {
+      margin-top: 0.2rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* MEDIA SECTION */
+    .media-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .video-shell {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      background: #000;
+    }
+
+    .video-shell iframe,
+    .video-shell video {
+      width: 100%;
+      height: 260px;
+      border: none;
+      display: block;
+    }
+
+    .video-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      color: #f9fafb;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .media-copy h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+      color: var(--brown);
+    }
+
+    .media-copy p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .audio-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 1rem;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .audio-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .audio-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(120deg, #0ea5e9, #0f766e);
+      color: #fdf7ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(15,118,110,0.4);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 14px 32px rgba(15,118,110,0.45);
+    }
+
+    .audio-meta span:first-child {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--brown);
+    }
+
+    .audio-meta span:last-child {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .audio-description {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 0.4rem;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 0.7rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      cursor: pointer;
+      transform-origin: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      font-size: 0.6rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      background: transparent;
+      color: transparent;
+      border: none;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 38px rgba(148,92,40,0.32);
+      border-color: #f2cda0;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 1.9rem 0 1.1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      border-top: 1px solid var(--border-soft);
+      background: #fdf7ef;
+      margin-top: 2.7rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes intro-bounce {
+      0%,100 { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-6px) scale(1.03); }
+    }
+
+    @keyframes intro-progress {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(15,118,110,0.5); transform: scale(1); }
+      70% { box-shadow: 0 0 0 9px rgba(15,118,110,0); transform: scale(1.08); }
+      100% { box-shadow: 0 0 0 0 rgba(15,118,110,0); transform: scale(1); }
+    }
+
+    @keyframes slow-zoom {
+      0% { transform: scale(1.02); }
+      100% { transform: scale(1.08); }
+    }
+
+    @keyframes ripple {
+      0% { opacity: 0.6; transform: scale(0.3); }
+      100% { opacity: 0; transform: scale(1.4); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes talking-bounce {
+      0%,100% { transform: translateY(0); }
+      25% { transform: translateY(-4px); }
+      50% { transform: translateY(2px); }
+      75% { transform: translateY(-2px); }
+    }
+
+    @keyframes title-wave {
+      0%,100% { transform: translateY(0); }
+      30% { transform: translateY(-3px); }
+      60% { transform: translateY(2px); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+      }
+      .hero-visual { order: -1; }
+
+      .about-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .characters-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .letters-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: inline-flex; }
+
+      .hero { padding-top: 1.3rem; }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-primary, .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .characters-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .letters-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-shell {
+        padding: 1.6rem 1.1rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+
+
+    @media (max-width: 640px) {
+
+  .lesson-header {
+    flex-direction: column;
+    text-align: center;
+    align-items: stretch;
+  }
+
+  .position-tabs {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .position-tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .lesson-header h3 {
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+  }
+
+  .lesson-header p {
+    font-size: .85rem;
+    line-height: 1.4;
+    margin-bottom: .8rem;
+  }
+
+}
+
+
+.position-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: .3rem;
+}
+
+  </style>
+</head>
+<body>
+  <!-- FLOATING BALLOONS -->
+  <div class="floating-balloons">
+    <span class="balloon b1"></span>
+    <span class="balloon b2"></span>
+    <span class="balloon b3"></span>
+    <span class="balloon b4"></span>
+    <span class="balloon b5"></span>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-screen" id="intro">
+    <div class="intro-logo">
+      <span>🕌</span>
+    </div>
+    <div class="intro-title">SAUDI ARABIC JOURNEY</div>
+    <div class="intro-subtitle">Welcome to Jeddah – your first stop to learn Arabic.</div>
+    <div class="intro-progress">
+      <div class="intro-progress-bar"></div>
+    </div>
+    <div class="intro-skip" id="intro-skip">Skip · ابدأ الآن</div>
+  </div>
+
+  <div class="page-content" id="page-content">
+    <!-- HEADER -->
+    <header>
+      <div class="container">
+        <div class="nav">
+          <div class="logo">
+            <div class="logo-icon">🌊</div>
+            <span>Jeddah Arabic</span>
+          </div>
+          <nav class="nav-links">
+            <a href="#about">About Jeddah</a>
+            <a href="#characters">Characters</a>
+            <a href="#lesson">Letters</a>
+            <a href="#media">Video & Audio</a>
+            <a href="#gallery">Gallery</a>
+          </nav>
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+          </button>
+        </div>
+        <nav class="nav-links-mobile" id="nav-mobile">
+          <a href="#about">About Jeddah</a>
+          <a href="#characters">Characters</a>
+          <a href="#lesson">Letters</a>
+          <a href="#media">Video & Audio</a>
+          <a href="#gallery">Gallery</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">
+            <span class="dot"></span>
+            Learn Arabic · Explore Saudi culture
+          </div>
+          <h1 class="hero-title">
+            Start your <span>Arabic journey</span> from Jeddah.
+          </h1>
+          <p class="hero-subtitle" id="hero-subtitle"></p>
+          <div class="hero-cta">
+            <button class="btn-primary btn-ripple" data-scroll="#lesson">
+              Go to letters lesson
+              <span>↓</span>
+            </button>
+            <button class="btn-ghost btn-ripple" data-scroll="#characters">
+              Meet the characters
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card" id="hero-card">
+            <div class="hero-main-media">
+              <img src="j.png" alt="Illustration of Jeddah corniche" />
+              <div class="hero-tag">
+                <span class="bullet"></span>
+                Jeddah corniche
+              </div>
+            </div>
+           
+            
+              <span style="color: var(--text-muted);">
+                Learn Arabic with short words, sounds, and scenes from the city.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT JEDDAH -->
+    <section id="about">
+      <div class="container fade-up">
+        <div class="section-label">
+          <span class="dot"></span> About Jeddah
+        </div>
+        <h2 class="section-title">Jeddah – the first city in your Arabic map.</h2>
+        <p class="section-subtitle">
+          Discover Jeddah through the sea, historic Al-Balad, and everyday life on the Red Sea coast.
+        </p>
+
+        <div class="about-grid">
+          <article class="about-card">
+            <div class="about-icon">🌊</div>
+            <h3>Red Sea Corniche</h3>
+            <p>
+              Jeddah is a coastal city on the Red Sea.  
+              You can see the sea, palm trees, and people walking and greeting each other in Arabic.
+            </p>
+          </article>
+          <article class="about-card">
+            <div class="about-icon">🏘️</div>
+            <h3>Historic Al-Balad</h3>
+            <p>
+              Old houses with wooden balconies, narrow streets, and small markets where you can hear simple Arabic words.
+            </p>
+          </article>
+          <article class="about-card">
+            <div class="about-icon">☕</div>
+            <h3>Daily Saudi Life</h3>
+            <p>
+              Families, traditional clothes, coffee, and friendly greetings like “مرحبا” and “أهلاً وسهلاً”.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHARACTERS -->
+    <section id="characters">
+      <div class="container fade-up">
+        <div class="section-label">
+          <span class="dot"></span> Characters
+        </div>
+        <h2 class="section-title">Meet your guides in Jeddah.</h2>
+        <p class="section-subtitle">
+          Click the buttons to hear each character and practice short Arabic words and sentences.
+        </p>
+
+        <div class="characters-grid">
+          <!-- Character 1 -->
+          <article class="character-card" data-character="1">
+            <div class="character-ai-tag">Main teacher character</div>
+            <div class="character-image-wrapper">
+              <img src="sa.png" alt="Arabic teacher character" />
+            </div>
+            <h3>Teacher Razan</h3>
+            <div class="character-role">Arabic teacher from Jeddah</div>
+            <p class="character-desc">
+              She welcomes students and pronounces the letters slowly and clearly.
+            </p>
+            <button class="character-btn" data-audio="teacher-audio">
+              ▶ Play greeting
+            </button>
+            <audio id="teacher-audio">
+              <source src="media/teacher-greeting.mp3" type="audio/mpeg" />
+            </audio>
+          </article>
+
+          <!-- Character 2 -->
+          <article class="character-card" data-character="2">
+            <div class="character-ai-tag">Student character</div>
+            <div class="character-image-wrapper">
+              <img src="a.png" alt="Student character" />
+            </div>
+            <h3>Ahmed</h3>
+            <div class="character-role">Student learning Arabic</div>
+            <p class="character-desc">
+              He repeats after the teacher and shows simple example words for each letter.
+            </p>
+            <button class="character-btn" data-audio="student-audio">
+              ▶ Play repeat
+            </button>
+            <audio id="student-audio">
+              <source src="media/student-repeat.mp3" type="audio/mpeg" />
+            </audio>
+          </article>
+
+          <!-- Character 3 -->
+          <article class="character-card" data-character="3">
+            <div class="character-ai-tag">Culture guide character</div>
+            <div class="character-image-wrapper">
+              <img src="la.png" alt="Tour guide character" />
+            </div>
+            <h3>Joud</h3>
+            <div class="character-role">Jeddah culture guide</div>
+            <p class="character-desc">
+              She teaches words related to Jeddah, like “بحر” (sea) and “كورنيش” (corniche).
+            </p>
+            <button class="character-btn" data-audio="guide-audio">
+              ▶ Play culture tip
+            </button>
+            <audio id="guide-audio">
+              <source src="media/guide-tip.mp3" type="audio/mpeg" />
+            </audio>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LESSON: LETTERS -->
+    <section id="lesson">
+      <div class="container fade-up">
+        <div class="section-label">
+          <span class="dot"></span> Lesson · حروف عربية
+        </div>
+        <h2 class="section-title">Arabic letters in the word.</h2>
+        <p class="section-subtitle">
+          In this lesson we focus on the letter ج.  
+          See how it looks at the beginning, middle, and end of words related to Jeddah.
+        </p>
+
+        <div class="lesson-shell">
+          <div class="lesson-header">
+            <div>
+              <h3>Letter of the day: ج (Jeem)</h3>
+              <p>
+                Click on the position buttons to see how the letter changes inside the word.
+              </p>
+            </div>
+            <div class="position-tabs">
+              <button class="position-tab active" data-position="begin">Beginning · أول الكلمة</button>
+              <button class="position-tab" data-position="middle">Middle · وسط الكلمة</button>
+              <button class="position-tab" data-position="end">End · آخر الكلمة</button>
+            </div>
+          </div>
+
+          <div class="letters-grid" id="letters-grid">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDIA: VIDEO + AUDIO -->
+    <section id="media">
+      <div class="container fade-up">
+        <div class="section-label">
+          <span class="dot"></span> Video & Audio
+        </div>
+        <h2 class="section-title">Explanation video + Jeddah soundscape.</h2>
+        <p class="section-subtitle">
+          Watch a short video about the page, then listen to Jeddah sounds while you practice new words.
+        </p>
+
+        <div class="media-grid">
+          <!-- VIDEO -->
+          <div class="video-shell">
+            <div class="video-label">Explanation video</div>
+            <video controls>
+              <source src="je.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <!-- AUDIO -->
+          <div class="media-copy">
+            <h3>“Sounds of Jeddah” – ambient audio</h3>
+            <p>
+              A short ambient track with sea waves and a soft city background.
+            </p>
+            <div class="audio-card">
+              <div class="audio-row">
+                <button class="audio-btn" id="audio-toggle">►</button>
+                <div class="audio-meta">
+                  <span>Jeddah Sea</span>
+                </div>
+              </div>
+              <p class="audio-description">
+Imagine walking on the Jeddah corniche in the evening, while you listen to the sounds of the Bahar Corniche.              </p>
+              <audio id="jeddah-audio">
+                <source src="jeddahsea.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="container fade-up">
+        <div class="section-label">
+          <span class="dot"></span> Gallery
+        </div>
+        <h2 class="section-title">Jeddah in images.</h2>
+        <p class="section-subtitle">
+          A small gallery of Jeddah: old doors, the sea, night streets, and a classroom scene.
+        </p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="dd.jpg" alt="Old Jeddah doors" />
+          </div>
+          <div class="gallery-item">
+            <img src="e.jpg" alt="Jeddah corniche sunset" />
+          </div>
+          <div class="gallery-item">
+            <img src="o.jpg" alt="Street in Al-Balad with people" />
+          </div>
+          <div class="gallery-item">
+            <img src="f.jpg" alt="Class learning Arabic with Jeddah scene" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        Saudi Arabic Journey – Jeddah Station ·Create for Dr.Suaad.
+      </div>
+    </footer>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // INTRO
+    const intro = document.getElementById("intro");
+    const pageContent = document.getElementById("page-content");
+    const introSkip = document.getElementById("intro-skip");
+
+    function hideIntro() {
+      intro.classList.add("hidden");
+      pageContent.classList.add("visible");
+    }
+
+    const introTimer = setTimeout(hideIntro, 5000);
+    introSkip.addEventListener("click", () => {
+      clearTimeout(introTimer);
+      hideIntro();
+    });
+
+    // TYPEWRITER
+    const subtitleEl = document.getElementById("hero-subtitle");
+    const subtitleText =
+      "A simple interactive page that helps you learn Arabic using Jeddah’s culture, sounds, and characters.";
+
+    let typeIndex = 0;
+    function typeWriter() {
+      if (typeIndex <= subtitleText.length) {
+        subtitleEl.textContent = subtitleText.slice(0, typeIndex);
+        typeIndex++;
+        setTimeout(typeWriter, 28);
+      }
+    }
+    typeWriter();
+
+    // SMOOTH SCROLL + RIPPLE
+    document.querySelectorAll("[data-scroll]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = document.querySelector(btn.getAttribute("data-scroll"));
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    document.querySelectorAll(".btn-ripple").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btn.classList.remove("active");
+        void btn.offsetWidth;
+        btn.classList.add("active");
+      });
+    });
+
+    // NAV MOBILE
+    const navToggle = document.getElementById("nav-toggle");
+    const navMobile = document.getElementById("nav-mobile");
+
+    navToggle.addEventListener("click", () => {
+      navToggle.classList.toggle("open");
+      navMobile.classList.toggle("open");
+    });
+
+    // اغلاق المنيو بعد الضغط على اللينكات في الموبايل
+    navMobile.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navMobile.classList.remove("open");
+        navToggle.classList.remove("open");
+      });
+    });
+
+    // HERO PARALLAX
+    const heroCard = document.getElementById("hero-card");
+    if (heroCard) {
+      heroCard.addEventListener("mousemove", (e) => {
+        const rect = heroCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rotateX = ((y - cy) / cy) * -6;
+        const rotateY = ((x - cx) / cx) * 6;
+        heroCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      heroCard.addEventListener("mouseleave", () => {
+        heroCard.style.transform = "rotateX(0deg) rotateY(0deg)";
+      });
+    }
+
+    // INTERSECTION OBSERVER (fade-up)
+    const fadeElements = document.querySelectorAll(".fade-up");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    fadeElements.forEach((el) => observer.observe(el));
+
+    // CHARACTERS AUDIO + ANIMATION
+    const characterButtons = document.querySelectorAll(".character-btn");
+
+    characterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const audioId = btn.getAttribute("data-audio");
+        const audioEl = document.getElementById(audioId);
+        const card = btn.closest(".character-card");
+
+        document.querySelectorAll(".character-card").forEach((c) => {
+          if (c !== card) c.classList.remove("talking");
+        });
+        document.querySelectorAll("#characters audio").forEach((a) => {
+          if (a !== audioEl) a.pause();
+        });
+
+        if (!audioEl) return;
+
+        if (audioEl.paused) {
+          audioEl.currentTime = 0;
+          audioEl.play();
+          card.classList.add("talking");
+        } else {
+          audioEl.pause();
+          card.classList.remove("talking");
+        }
+
+        audioEl.onended = () => {
+          card.classList.remove("talking");
+        };
+      });
+    });
+
+    // LESSON DATA
+    const letterData = {
+      begin: [
+        {
+          ar: "ج",
+          en: "Jeem",
+          word: "جدة",
+          explanation: "ج comes at the beginning of the word Jeddah.",
+          arabicNote: "جـ في أول الكلمة: جَدّة"
+        },
+        {
+          ar: "بـ",
+          en: "Ba",
+          word: "بحر",
+          explanation: "ب appears at the beginning of the word ‘بحر’ (sea).",
+          arabicNote: "بـ في أول الكلمة: بحر"
+        },
+        {
+          ar: "كـ",
+          en: "Kaf",
+          word: "كورنيش",
+          explanation: "كـ starts the word ‘كورنيش’ (corniche).",
+          arabicNote: "كـ في أول الكلمة: كورنيش"
+        }
+      ],
+      middle: [
+        {
+          ar: "ـجـ",
+          en: "Jeem",
+          word: "مسجد",
+          explanation: "ج appears in the middle of the word ‘مسجد’ (mosque).",
+          arabicNote: "ـجـ في وسط الكلمة: مسجد"
+        },
+        {
+          ar: "ـحـ",
+          en: "Ha",
+          word: "بحر",
+          explanation: "ح sits in the middle of the word ‘بحر’.",
+          arabicNote: "ـحـ في وسط الكلمة: بحر"
+        },
+        {
+          ar: "ـدـ",
+          en: "Dal",
+          word: "جدة القديمة",
+          explanation: "د is in the middle of ‘جدة القديمة’ when you say it slowly.",
+          arabicNote: "ـدـ داخل عبارة: جدة القديمة"
+        }
+      ],
+      end: [
+        {
+          ar: "ـج",
+          en: "Jeem",
+          word: "برج",
+          explanation: "ج comes at the end of the word ‘برج’ (tower).",
+          arabicNote: "ـج في آخر الكلمة: برج"
+        },
+        {
+          ar: "ـر",
+          en: "Ra",
+          word: "بحر",
+          explanation: "ر appears at the end of ‘بحر’.",
+          arabicNote: "ـر في آخر الكلمة: بحر"
+        },
+        {
+          ar: "ـة",
+          en: "Ta marbuta",
+          word: "جنة",
+          explanation: "ة ends the word ‘جنة’ (paradise).",
+          arabicNote: "ـة في آخر الكلمة: جنة"
+        }
+      ]
+    };
+
+    const lettersGrid = document.getElementById("letters-grid");
+    const tabs = document.querySelectorAll(".position-tab");
+
+    function renderLetters(position) {
+      const items = letterData[position] || [];
+      lettersGrid.innerHTML = "";
+      items.forEach((item) => {
+        const card = document.createElement("article");
+        card.className = "letter-card";
+        card.innerHTML = `
+          <div class="letter-ar">${item.ar}</div>
+          <div class="letter-en">${item.en}</div>
+          <div class="letter-example">
+            <span>${item.word}</span>
+          </div>
+          <div class="letter-position-note">
+            ${item.explanation}<br/>
+            <span>${item.arabicNote}</span>
+          </div>
+        `;
+        lettersGrid.appendChild(card);
+      });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        const position = tab.getAttribute("data-position");
+        renderLetters(position);
+      });
+    });
+
+    renderLetters("begin");
+
+    // AUDIO TOGGLE
+    const audio = document.getElementById("jeddah-audio");
+    const audioToggle = document.getElementById("audio-toggle");
+    let isPlaying = false;
+
+    audioToggle.addEventListener("click", () => {
+      if (!audio) return;
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+    });
+
+    if (audio) {
+      audio.addEventListener("play", () => {
+        isPlaying = true;
+        audioToggle.textContent = "❚❚";
+      });
+      audio.addEventListener("pause", () => {
+        isPlaying = false;
+        audioToggle.textContent = "►";
+      });
+      audio.addEventListener("ended", () => {
+        isPlaying = false;
+        audioToggle.textContent = "►";
+      });
+    }
+  </script>
+</body>
+</html>
