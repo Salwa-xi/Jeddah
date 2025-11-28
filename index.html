@@ -48,58 +48,6 @@
       padding: 0 1.25rem;
     }
 
-    /* FLOATING BALLOONS */
-    .floating-balloons {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .balloon {
-      position: absolute;
-      width: 22px;
-      height: 32px;
-      border-radius: 50% 50% 45% 45%;
-      background: rgba(14,165,233,0.2);
-      box-shadow: 0 8px 15px rgba(15,23,42,0.15);
-      animation: float-up 16s linear infinite;
-    }
-
-    .balloon::after {
-      content: "";
-      position: absolute;
-      bottom: -14px;
-      left: 50%;
-      width: 2px;
-      height: 18px;
-      background: rgba(148, 92, 40, 0.5);
-      transform: translateX(-50%);
-    }
-
-    .balloon.b1 { left: 10%; animation-delay: 0s; }
-    .balloon.b2 { left: 30%; animation-delay: 3s; background: rgba(249,115,22,0.25); }
-    .balloon.b3 { left: 55%; animation-delay: 6s; background: rgba(14,148,136,0.25); }
-    .balloon.b4 { left: 75%; animation-delay: 9s; background: rgba(234,179,8,0.25); }
-    .balloon.b5 { left: 90%; animation-delay: 12s; background: rgba(14,165,233,0.18); }
-
-    @keyframes float-up {
-      0% {
-        transform: translateY(110vh) translateX(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.9;
-      }
-      50% {
-        transform: translateY(40vh) translateX(-10px);
-      }
-      100% {
-        transform: translateY(-20vh) translateX(10px);
-        opacity: 0;
-      }
-    }
 
     /* INTRO SCREEN */
     .intro-screen {
@@ -451,6 +399,17 @@
       max-width: 440px;
       min-height: 3.1em;
       margin-bottom: 1.5rem;
+    }
+
+    /* TEXT MOTION (hero) */
+    .hero-title,
+    .hero-subtitle {
+      opacity: 0;
+      animation: text-appear 0.9s ease forwards;
+    }
+
+    .hero-subtitle {
+      animation-delay: 0.18s;
     }
 
     .hero-cta {
@@ -1093,6 +1052,11 @@
     }
 
     /* ANIMATIONS */
+    @keyframes text-appear {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
     @keyframes intro-bounce {
       0%,100 { transform: translateY(0) scale(1); }
       50% { transform: translateY(-6px) scale(1.03); }
@@ -1208,66 +1172,55 @@
       }
     }
 
-
-
     @media (max-width: 640px) {
 
-  .lesson-header {
-    flex-direction: column;
-    text-align: center;
-    align-items: stretch;
-  }
+      .lesson-header {
+        flex-direction: column;
+        text-align: center;
+        align-items: stretch;
+      }
 
-  .position-tabs {
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-  }
+      .position-tabs {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
 
-  .position-tab {
-    flex: 1;
-    text-align: center;
-    padding: 0.5rem 0.8rem;
-    font-size: 0.8rem;
-  }
+      .position-tab {
+        flex: 1;
+        text-align: center;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+      }
 
-  .lesson-header h3 {
-    font-size: 1.1rem;
-    margin-bottom: .5rem;
-  }
+      .lesson-header h3 {
+        font-size: 1.1rem;
+        margin-bottom: .5rem;
+      }
 
-  .lesson-header p {
-    font-size: .85rem;
-    line-height: 1.4;
-    margin-bottom: .8rem;
-  }
+      .lesson-header p {
+        font-size: .85rem;
+        line-height: 1.4;
+        margin-bottom: .8rem;
+      }
 
-}
+    }
 
-
-.position-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: .3rem;
-}
+    .position-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: .3rem;
+    }
 
   </style>
 </head>
 <body>
-  <!-- FLOATING BALLOONS -->
-  <div class="floating-balloons">
-    <span class="balloon b1"></span>
-    <span class="balloon b2"></span>
-    <span class="balloon b3"></span>
-    <span class="balloon b4"></span>
-    <span class="balloon b5"></span>
-  </div>
 
   <!-- INTRO -->
   <div class="intro-screen" id="intro">
     <div class="intro-logo">
-      <span>🕌</span>
+      <span><i class="fa-solid fa-mosque"></i></span>
     </div>
     <div class="intro-title">SAUDI ARABIC JOURNEY</div>
     <div class="intro-subtitle">Welcome to Jeddah – your first stop to learn Arabic.</div>
@@ -1283,7 +1236,7 @@
       <div class="container">
         <div class="nav">
           <div class="logo">
-            <div class="logo-icon">🌊</div>
+            <div class="logo-icon"><i class="fa-solid fa-water"></i></div>
             <span>Jeddah Arabic</span>
           </div>
           <nav class="nav-links">
@@ -1339,12 +1292,9 @@
                 Jeddah corniche
               </div>
             </div>
-           
-            
-              <span style="color: var(--text-muted);">
-                Learn Arabic with short words, sounds, and scenes from the city.
-              </span>
-            </div>
+            <span style="color: var(--text-muted);">
+              Learn Arabic with short words, sounds, and scenes from the city.
+            </span>
           </div>
         </div>
       </div>
@@ -1363,7 +1313,7 @@
 
         <div class="about-grid">
           <article class="about-card">
-            <div class="about-icon">🌊</div>
+            <div class="about-icon"><i class="fa-solid fa-water"></i></div>
             <h3>Red Sea Corniche</h3>
             <p>
               Jeddah is a coastal city on the Red Sea.  
@@ -1371,14 +1321,14 @@
             </p>
           </article>
           <article class="about-card">
-            <div class="about-icon">🏘️</div>
+            <div class="about-icon"><i class="fa-solid fa-city"></i></div>
             <h3>Historic Al-Balad</h3>
             <p>
               Old houses with wooden balconies, narrow streets, and small markets where you can hear simple Arabic words.
             </p>
           </article>
           <article class="about-card">
-            <div class="about-icon">☕</div>
+            <div class="about-icon"><i class="fa-solid fa-mug-hot"></i></div>
             <h3>Daily Saudi Life</h3>
             <p>
               Families, traditional clothes, coffee, and friendly greetings like “مرحبا” and “أهلاً وسهلاً”.
@@ -1464,7 +1414,7 @@
     <section id="lesson">
       <div class="container fade-up">
         <div class="section-label">
-          <span class="dot"></span> Lesson · حروف عربية
+          <span class="dot"></span> Lesson
         </div>
         <h2 class="section-title">Arabic letters in the word.</h2>
         <p class="section-subtitle">
@@ -1632,7 +1582,6 @@ Imagine walking on the Jeddah corniche in the evening, while you listen to the s
       navMobile.classList.toggle("open");
     });
 
-    // اغلاق المنيو بعد الضغط على اللينكات في الموبايل
     navMobile.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         navMobile.classList.remove("open");
