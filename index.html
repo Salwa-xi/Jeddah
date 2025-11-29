@@ -1173,7 +1173,6 @@
     }
 
     @media (max-width: 640px) {
-
       .lesson-header {
         flex-direction: column;
         text-align: center;
@@ -1204,7 +1203,6 @@
         line-height: 1.4;
         margin-bottom: .8rem;
       }
-
     }
 
     .position-tabs {
@@ -1213,155 +1211,68 @@
       gap: .3rem;
     }
 
+    /* ===== تعديلات البوب-أب في سِكشن الشخصيات ===== */
 
-    /* CHARACTER VIDEO MODAL */
-.video-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.96); 
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  padding: 1.5rem;
-}
+    /* نخلي سِكشن الشخصيات هو الكونتينر للبوب-أب */
+    #characters {
+      position: relative;
+    }
 
-.video-modal.open {
-  display: flex;
-}
+    /* يغطي سِكشن الشخصيات فقط بخلفية بيضا */
+    .video-modal {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      padding: 2rem 1.5rem;
+    }
 
-.video-modal-inner {
-  background: #0b1120;
-  border-radius: 20px;
-  max-width: 640px;
-  width: 100%;
-  position: relative;
-  padding: 1.2rem;
-  box-shadow: 0 20px 50px rgba(15,23,42,0.6);
-}
+    .video-modal.open {
+      display: flex;
+    }
 
-.video-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  color: #e5e7eb;
-  font-size: 1.3rem;
-  cursor: pointer;
-}
+    .video-modal-inner {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 560px;
+      width: 100%;
+      max-height: 90vh;
+      position: relative;
+      padding: 1.4rem 1.25rem;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.32);
+      border: 1px solid var(--border-soft);
+    }
 
-.video-modal-video-wrapper {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #fff;
-  width: 100%;
-  aspect-ratio: 16/9;
-}
-#character-video {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-  display: none;
-}
+    .video-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: #4b2b20;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
 
+    .video-modal-video-wrapper {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
 
-#character-video {
-  width: 100%;
-  height: 100%;
-  display: none; /* نخفي الفيديو إلى أن يضغط المستخدم زر التشغيل */
-}
-
-.video-modal-play {
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  border-radius: 999px;
-  border: none;
-  background: linear-gradient(120deg, #0ea5e9, #0f766e);
-  color: #f9fafb;
-  font-size: 1.6rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 14px 30px rgba(15,118,110,0.6);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: none;
-}
-
-.video-modal-play:hover {
-  transform: translateY(-1px) scale(1.03);
-  box-shadow: 0 18px 40px rgba(15,118,110,0.7);
-}
-
-
-
-
-
-
-
-
-.video-modal {
-  position: fixed;
-  inset: 0;
-  /* بدل صفحة بيضا كاملة نخليها أوفرلاي خفيفة */
-  background: rgba(15, 23, 42, 0.28);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  padding: 1.5rem;
-}
-
-.video-modal.open {
-  display: flex;
-}
-
-/* هنا الكارد نفسه */
-.video-modal-inner {
-  background: #ffffff;
-  border-radius: 24px;
-  max-width: 560px;
-  width: 100%;
-  position: relative;
-  padding: 1.4rem 1.25rem;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.32);
-  border: 1px solid var(--border-soft);
-}
-
-.video-modal-video-wrapper {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #fff;
-  width: 100%;
-  aspect-ratio: 16/9;
-}
-
-#character-video {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-  display: none; /* الجافاسكربت يغيّرها لـ block لما يشتغل */
-}
-
-.video-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  color: #6b7280;
-  font-size: 1.3rem;
-  cursor: pointer;
-}
-
-
-
+    #character-video {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -1510,16 +1421,13 @@
             <p class="character-desc">
               She welcomes students and pronounces the letters slowly and clearly.
             </p>
-          <button class="character-btn character-video-btn"
-        data-video="ra.MOV">
-    ▶ Play greeting
-</button>
+            <button class="character-btn character-video-btn"
+              data-video="ra.MOV">
+              ▶ Play greeting
+            </button>
             <audio id="teacher-audio">
               <source src="media/teacher-greeting.mp3" type="audio/mpeg" />
             </audio>
-
-
-
           </article>
 
           <!-- Character 2 -->
@@ -1534,11 +1442,10 @@
               He repeats after the teacher and shows simple example words for each letter.
             </p>
 
-<button class="character-btn character-video-btn"
-        data-video="aM.MOV">
-    ▶ Play repeat
-</button>
-
+            <button class="character-btn character-video-btn"
+              data-video="aM.MOV">
+              ▶ Play repeat
+            </button>
           </article>
 
           <!-- Character 3 -->
@@ -1557,13 +1464,23 @@
               <source src="media/guide-tip.mp3" type="audio/mpeg" />
             </audio>
 
-
-<button class="character-btn character-video-btn"
-        data-video="Jo.MOV">
-  ▶ Play culture tip
-</button>
-
+            <button class="character-btn character-video-btn"
+              data-video="Jo.MOV">
+              ▶ Play culture tip
+            </button>
           </article>
+        </div>
+      </div>
+
+      <!-- CHARACTER VIDEO POPUP INSIDE CHARACTERS SECTION -->
+      <div class="video-modal" id="character-video-modal">
+        <div class="video-modal-inner">
+          <button class="video-modal-close" id="video-modal-close" aria-label="Close video">
+            ✕
+          </button>
+          <div class="video-modal-video-wrapper">
+            <video id="character-video" playsinline></video>
+          </div>
         </div>
       </div>
     </section>
@@ -1625,8 +1542,7 @@
           <!-- AUDIO -->
           <div class="media-copy">
             <h3>“Sounds of Jeddah” ambient audio</h3>
-            <p>
-            </p>
+            <p></p>
             <div class="audio-card">
               <div class="audio-row">
                 <button class="audio-btn" id="audio-toggle">►</button>
@@ -1635,7 +1551,8 @@
                 </div>
               </div>
               <p class="audio-description">
-Imagine walking on the Jeddah corniche in the evening, while you listen to the sounds of the Bahar Corniche.              </p>
+                Imagine walking on the Jeddah corniche in the evening, while you listen to the sounds of the Bahar Corniche.
+              </p>
               <audio id="jeddah-audio">
                 <source src="jeddahsea.mp3" type="audio/mpeg" />
               </audio>
@@ -1678,56 +1595,50 @@ Imagine walking on the Jeddah corniche in the evening, while you listen to the s
       <div class="container">
         Saudi Arabic Journey – Create for Dr.Suaad.
       </div>
-
-
-      <!-- CHARACTER VIDEO MODAL -->
-<div class="video-modal" id="character-video-modal">
-  <div class="video-modal-inner">
-    <button class="video-modal-close" id="video-modal-close" aria-label="Close video">
-      ✕
-    </button>
-    <div class="video-modal-video-wrapper">
-      <video id="character-video" playsinline></video>
-      <button class="video-modal-play" id="video-modal-play">▶</button>
-    </div>
-  </div>
-</div>
-
     </footer>
   </div>
 
   <!-- JAVASCRIPT -->
   <script>
+    // CHARACTER VIDEO MODAL (inside characters section)
+    const videoModal = document.getElementById("character-video-modal");
+    const characterVideo = document.getElementById("character-video");
+    const videoCloseBtn = document.getElementById("video-modal-close");
 
-// CHARACTER VIDEO MODAL
-const videoModal = document.getElementById("character-video-modal");
-const characterVideo = document.getElementById("character-video");
-const videoCloseBtn = document.getElementById("video-modal-close");
+    const charactersSection = document.getElementById("characters");
+    const charactersGrid = charactersSection
+      ? charactersSection.querySelector(".characters-grid")
+      : null;
 
-document.querySelectorAll(".character-video-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const src = btn.getAttribute("data-video");
-    if (!src) return;
+    document.querySelectorAll(".character-video-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const src = btn.getAttribute("data-video");
+        if (!src) return;
 
-    characterVideo.style.display = "block";
-    characterVideo.removeAttribute("controls");
-    characterVideo.setAttribute("src", src);
-    characterVideo.currentTime = 0;
+        // حط الفيديو وابدأ التشغيل من البداية
+        characterVideo.setAttribute("src", src);
+        characterVideo.currentTime = 0;
 
-    videoModal.classList.add("open");
+        // أخفي شبكة الشخصيات وطلع البوب-أب مكانها
+        if (charactersGrid) charactersGrid.style.display = "none";
+        videoModal.classList.add("open");
 
-    characterVideo.play().catch(() => {});
-  });
-});
+        // شغّل الفيديو مباشرة
+        characterVideo.play().catch(() => {});
+      });
+    });
 
-videoCloseBtn.addEventListener("click", () => {
-  videoModal.classList.remove("open");
-  characterVideo.pause();
-  characterVideo.currentTime = 0;
-});
+    videoCloseBtn.addEventListener("click", () => {
+      videoModal.classList.remove("open");
 
+      // رجّع كروت الشخصيات
+      if (charactersGrid) charactersGrid.style.display = "";
 
-
+      // وقف الفيديو ونظفه
+      characterVideo.pause();
+      characterVideo.currentTime = 0;
+      characterVideo.removeAttribute("src");
+    });
 
     // INTRO
     const intro = document.getElementById("intro");
@@ -1825,7 +1736,7 @@ videoCloseBtn.addEventListener("click", () => {
     );
     fadeElements.forEach((el) => observer.observe(el));
 
-    // CHARACTERS AUDIO + ANIMATION
+    // CHARACTERS AUDIO + ANIMATION (للأوديو فقط)
     const characterButtons = document.querySelectorAll(".character-btn");
 
     characterButtons.forEach((btn) => {
@@ -1834,14 +1745,15 @@ videoCloseBtn.addEventListener("click", () => {
         const audioEl = document.getElementById(audioId);
         const card = btn.closest(".character-card");
 
+        // لو الزر ما له audio (أزرار الفيديو) نطلع مباشرة
+        if (!audioId || !audioEl) return;
+
         document.querySelectorAll(".character-card").forEach((c) => {
           if (c !== card) c.classList.remove("talking");
         });
         document.querySelectorAll("#characters audio").forEach((a) => {
           if (a !== audioEl) a.pause();
         });
-
-        if (!audioEl) return;
 
         if (audioEl.paused) {
           audioEl.currentTime = 0;
@@ -1966,7 +1878,7 @@ videoCloseBtn.addEventListener("click", () => {
 
     renderLetters("begin");
 
-    // AUDIO TOGGLE
+    // AUDIO TOGGLE (Jeddah ambient audio)
     const audio = document.getElementById("jeddah-audio");
     const audioToggle = document.getElementById("audio-toggle");
     let isPlaying = false;
