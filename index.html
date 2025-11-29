@@ -1213,6 +1213,91 @@
       gap: .3rem;
     }
 
+
+    /* CHARACTER VIDEO MODAL */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.96); 
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1.5rem;
+}
+
+.video-modal.open {
+  display: flex;
+}
+
+.video-modal-inner {
+  background: #0b1120;
+  border-radius: 20px;
+  max-width: 640px;
+  width: 100%;
+  position: relative;
+  padding: 1.2rem;
+  box-shadow: 0 20px 50px rgba(15,23,42,0.6);
+}
+
+.video-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.video-modal-video-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+#character-video {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  display: none;
+}
+
+
+#character-video {
+  width: 100%;
+  height: 100%;
+  display: none; /* نخفي الفيديو إلى أن يضغط المستخدم زر التشغيل */
+}
+
+.video-modal-play {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(120deg, #0ea5e9, #0f766e);
+  color: #f9fafb;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 30px rgba(15,118,110,0.6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: none;
+}
+
+.video-modal-play:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 18px 40px rgba(15,118,110,0.7);
+}
+
+
   </style>
 </head>
 <body>
@@ -1354,57 +1439,66 @@
           <article class="character-card" data-character="1">
             <div class="character-ai-tag">Main teacher character</div>
             <div class="character-image-wrapper">
-              <img src="sa.png" alt="Arabic teacher character" />
+              <img src="RR.png" alt="Arabic teacher character" />
             </div>
             <h3>Teacher Razan</h3>
             <div class="character-role">Arabic teacher from Jeddah</div>
             <p class="character-desc">
               She welcomes students and pronounces the letters slowly and clearly.
             </p>
-            <button class="character-btn" data-audio="teacher-audio">
-              ▶ Play greeting
-            </button>
+          <button class="character-btn character-video-btn"
+        data-video="ra.MOV">
+    ▶ Play greeting
+</button>
             <audio id="teacher-audio">
               <source src="media/teacher-greeting.mp3" type="audio/mpeg" />
             </audio>
+
+
+
           </article>
 
           <!-- Character 2 -->
           <article class="character-card" data-character="2">
             <div class="character-ai-tag">Student character</div>
             <div class="character-image-wrapper">
-              <img src="a.png" alt="Student character" />
+              <img src="AA.png" alt="Student character" />
             </div>
             <h3>Ahmed</h3>
             <div class="character-role">Student learning Arabic</div>
             <p class="character-desc">
               He repeats after the teacher and shows simple example words for each letter.
             </p>
-            <button class="character-btn" data-audio="student-audio">
-              ▶ Play repeat
-            </button>
-            <audio id="student-audio">
-              <source src="media/student-repeat.mp3" type="audio/mpeg" />
-            </audio>
+
+<button class="character-btn character-video-btn"
+        data-video="aM.MOV">
+    ▶ Play repeat
+</button>
+
           </article>
 
           <!-- Character 3 -->
           <article class="character-card" data-character="3">
             <div class="character-ai-tag">Culture guide character</div>
             <div class="character-image-wrapper">
-              <img src="la.png" alt="Tour guide character" />
+              <img src="JJ.png" alt="Tour guide character" />
             </div>
             <h3>Joud</h3>
             <div class="character-role">Jeddah culture guide</div>
             <p class="character-desc">
               She teaches words related to Jeddah, like “بحر” (sea) and “كورنيش” (corniche).
             </p>
-            <button class="character-btn" data-audio="guide-audio">
-              ▶ Play culture tip
-            </button>
+           
             <audio id="guide-audio">
               <source src="media/guide-tip.mp3" type="audio/mpeg" />
             </audio>
+
+
+<button class="character-btn character-video-btn"
+        data-video="Jo.MOV">
+  ▶ Play culture tip
+</button>
+
           </article>
         </div>
       </div>
@@ -1466,9 +1560,8 @@
 
           <!-- AUDIO -->
           <div class="media-copy">
-            <h3>“Sounds of Jeddah” – ambient audio</h3>
+            <h3>“Sounds of Jeddah” ambient audio</h3>
             <p>
-              A short ambient track with sea waves and a soft city background.
             </p>
             <div class="audio-card">
               <div class="audio-row">
@@ -1496,7 +1589,7 @@ Imagine walking on the Jeddah corniche in the evening, while you listen to the s
         </div>
         <h2 class="section-title">Jeddah in images.</h2>
         <p class="section-subtitle">
-          A small gallery of Jeddah: old doors, the sea, night streets, and a classroom scene.
+          A small gallery of Jeddah.
         </p>
 
         <div class="gallery-grid">
@@ -1504,10 +1597,10 @@ Imagine walking on the Jeddah corniche in the evening, while you listen to the s
             <img src="dd.jpg" alt="Old Jeddah doors" />
           </div>
           <div class="gallery-item">
-            <img src="e.jpg" alt="Jeddah corniche sunset" />
+            <img src="N.jpg" alt="Jeddah corniche sunset" />
           </div>
           <div class="gallery-item">
-            <img src="o.jpg" alt="Street in Al-Balad with people" />
+            <img src="SW.jpg" alt="Street in Al-Balad with people" />
           </div>
           <div class="gallery-item">
             <img src="f.jpg" alt="Class learning Arabic with Jeddah scene" />
@@ -1519,13 +1612,59 @@ Imagine walking on the Jeddah corniche in the evening, while you listen to the s
     <!-- FOOTER -->
     <footer>
       <div class="container">
-        Saudi Arabic Journey – Jeddah Station ·Create for Dr.Suaad.
+        Saudi Arabic Journey – Create for Dr.Suaad.
       </div>
+
+
+      <!-- CHARACTER VIDEO MODAL -->
+<div class="video-modal" id="character-video-modal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="video-modal-close" aria-label="Close video">
+      ✕
+    </button>
+    <div class="video-modal-video-wrapper">
+      <video id="character-video" playsinline></video>
+      <button class="video-modal-play" id="video-modal-play">▶</button>
+    </div>
+  </div>
+</div>
+
     </footer>
   </div>
 
   <!-- JAVASCRIPT -->
   <script>
+
+// CHARACTER VIDEO MODAL
+const videoModal = document.getElementById("character-video-modal");
+const characterVideo = document.getElementById("character-video");
+const videoCloseBtn = document.getElementById("video-modal-close");
+
+document.querySelectorAll(".character-video-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const src = btn.getAttribute("data-video");
+    if (!src) return;
+
+    characterVideo.style.display = "block";
+    characterVideo.removeAttribute("controls");
+    characterVideo.setAttribute("src", src);
+    characterVideo.currentTime = 0;
+
+    videoModal.classList.add("open");
+
+    characterVideo.play().catch(() => {});
+  });
+});
+
+videoCloseBtn.addEventListener("click", () => {
+  videoModal.classList.remove("open");
+  characterVideo.pause();
+  characterVideo.currentTime = 0;
+});
+
+
+
+
     // INTRO
     const intro = document.getElementById("intro");
     const pageContent = document.getElementById("page-content");
